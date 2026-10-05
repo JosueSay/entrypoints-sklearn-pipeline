@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "entrypoints-sklearn-pipeline"
+version = "0.1.0"
+description = "Pipeline de scikit-learn cuyos pasos se descubren con entrypoints"
+requires-python = ">=3.10"
+dependencies = [
+    "scikit-learn>=1.0",
+    "pandas",
+    "numpy",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+pipeline-sklearn = "pipeline.cli:main"
+
+[project.entry-points."pipeline.steps"]
+10-imputer = "pipeline.steps:imputer"
+20-scaler = "pipeline.steps:scaler"
+30-pca = "pipeline.steps:pca"
